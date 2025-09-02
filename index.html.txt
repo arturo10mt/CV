@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume | Arturo Mendoza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">Arturo Mendoza</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="text-gray-600 hover:text-blue-600 transition">Summary</a>
+                <a href="#timeline" class="text-gray-600 hover:text-blue-600 transition">Career Timeline</a>
+                <a href="#achievements" class="text-gray-600 hover:text-blue-600 transition">Key Achievements</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition">Skills</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#summary" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Summary</a>
+            <a href="#timeline" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Career Timeline</a>
+            <a href="#achievements" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Key Achievements</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Skills</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="text-center mb-20">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-4">Program and Product Manager</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+                Program and Product Management professional with extensive experience in SaaS, ERP, Telecom, and Financial Services. [cite_start]Proven track record in delivering digital transformations, reducing costs, and leading Agile teams. [cite: 4, 5]
+            </p>
+             <div class="flex justify-center space-x-6 text-gray-600">
+                <span>Mexico City / Guadalajara</span>
+                <span>&#x2022;</span>
+                <span>+52 55 2755 4616</span>
+                <span>&#x2022;</span>
+                <span>arturo10mt@gmail.com</span>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Career Timeline</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300"></div>
+                <div id="timeline-container" class="space-y-12">
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Key Achievements</h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">This section highlights the most significant quantifiable impacts from my career, showcasing my focus on driving efficiency, cost savings, and performance improvements. [cite_start]The chart below visualizes the percentage-based improvements across various key projects. [cite: 70]</p>
+            <div id="stat-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-center mb-4 text-gray-700">Project Impact Overview (%)</h3>
+                <div class="chart-container">
+                    <canvas id="achievementsChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Skills Dashboard</h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">My expertise spans across management, agile methodologies, and a wide array of modern technologies. [cite_start]Use the filters to explore my proficiency in different areas, visualized in the chart and detailed in the lists below. [cite: 73]</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="skill-filter-btn bg-blue-600 text-white py-2 px-5 rounded-full" data-skill="management">Management & Governance</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-700 py-2 px-5 rounded-full" data-skill="agile">Agile Practices</button>
+                <button class="skill-filter-btn bg-gray-200 text-gray-700 py-2 px-5 rounded-full" data-skill="tech">Technology & Tools</button>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                 <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+                    <div class="chart-container h-96 max-h-[450px]">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                <div id="skills-list-container" class="w-full lg:w-1/2 space-y-6">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t mt-20">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600">
+            <p>&copy; 2025 Arturo Mendoza. [cite_start]All rights reserved. [cite: 77]</p>
+        </div>
+    </footer>
+
+    <script>
+        const resumeData = {
+            experience: [
+                {
+                    company: "B-Yond – USA",
+                    role: "Technical Project Manager",
+                    period: "Aug 2024 – Present",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Leading ATT Mexico modernization with Red Hat OpenShift & OCI. [cite: 10]",
+                        [cite_start]"Defined product roadmap & migration milestones, cutting telecom launch time by 60%. [cite: 11]",
+                        [cite_start]"Implemented CI/CD with GitOps and Kafka-based data flows for 5G. [cite: 12]",
+                        [cite_start]"Reduced infra overhead by 30% while aligning to Vodafone standards. [cite: 13]"
+                    ]
+                },
+                {
+                    company: "Laureate – Mexico",
+                    role: "PMO Lead",
+                    period: "Mar 2023 – Jul 2024",
+                    side: 'right',
+                    details: [
+                        [cite_start]"Directed corporate real estate PMO across multiple regions. [cite: 15]",
+                        [cite_start]"Built KPIs, dashboards & workflows, improving visibility. [cite: 16]",
+                        [cite_start]"Reduced incident backlog by 40% with optimized escalation. [cite: 17]",
+                        [cite_start]"Partnered with LLM research teams to refine AI prompt templates. [cite: 18]"
+                    ]
+                },
+                {
+                    company: "AgileThought – Mexico",
+                    role: "Product Manager",
+                    period: "Sep 2021 – Mar 2023",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Managed ERP SaaS migration, coordinating 5 Agile teams. [cite: 20]",
+                        [cite_start]"Facilitated PI Planning with 40+ stakeholders (95% sprint goal success). [cite: 21]",
+                        [cite_start]"Delivered $2M cost savings & 20% higher reporting accuracy. [cite: 22]"
+                    ]
+                },
+                {
+                    company: "Intermediatica – Mexico",
+                    role: "Product Manager",
+                    period: "Apr 2020 – Sep 2021",
+                    side: 'right',
+                    details: [
+                        [cite_start]"Led ERP implementations for SMEs. [cite: 24]",
+                        [cite_start]"Managed proposals, pricing, budgets, and cross-functional delivery. [cite: 25]"
+                    ]
+                },
+                {
+                    company: "IBM – Mexico",
+                    role: "Project Delivery Manager",
+                    period: "Feb 2019 – Aug 2020",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Delivered large-scale programs in e-commerce, ERP & banking. [cite: 27]",
+                        [cite_start]"Boosted retail delivery speed by 22% with Agile Release Trains. [cite: 28]",
+                        [cite_start]"Reduced ERP delays by 30% via API-based integrations. [cite: 29]"
+                    ]
+                },
+                {
+                    company: "HSBC – Mexico",
+                    role: "Agile Leader (SAFe)",
+                    period: "Jan 2018 – Dec 2018",
+                    side: 'right',
+                    details: [
+                        [cite_start]"Spearheaded credit card system transformation, reducing settlement by 40%. [cite: 31]",
+                        [cite_start]"Migrated 10M+ customer records to cloud, improving integrity & fraud detection. [cite: 32]",
+                        [cite_start]"Cut fraud detection response times by 35%. [cite: 33]"
+                    ]
+                },
+                 {
+                    company: "Huawei – Mexico",
+                    role: "Latin America PMO Lead",
+                    period: "May 2017 – Dec 2017",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Founded LATAM Regional PMO, standardizing governance across 8+ countries. [cite: 35]"
+                    ]
+                },
+                {
+                    company: "IBM – Mexico",
+                    role: "Project Delivery Manager",
+                    period: "Nov 2010 – Mar 2017",
+                    side: 'right',
+                    details: [
+                        [cite_start]"Led ERP SOM rollout for Liverpool, reducing costs by 34%. [cite: 37]",
+                        [cite_start]"Modernized Citi Banamex banking services via APIs & Cloud Foundry. [cite: 38]"
+                    ]
+                },
+                {
+                    company: "IXE Bank – Mexico",
+                    role: "Program Manager",
+                    period: "Sep 2008 – Oct 2010",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Delivered Azure-based unified customer view, boosting satisfaction by 80%. [cite: 40]",
+                        [cite_start]"Built data warehouse for 5M+ records, strengthening compliance. [cite: 41]"
+                    ]
+                },
+                {
+                    company: "Citi Banamex – Mexico",
+                    role: "Sr. Program Manager",
+                    period: "May 1991 – Aug 2008",
+                    side: 'right',
+                    details: [
+                        [cite_start]"Progressed from Analyst to Sr. Manager, leading BI, payments & treasury projects. [cite: 43]",
+                        [cite_start]"Directed SWIFT integration post-Citigroup acquisition. [cite: 44]"
+                    ]
+                },
+                {
+                    company: "Universidad Iberoamericana",
+                    role: "Professor",
+                    period: "Jan 2000 – Dec 2010",
+                    side: 'left',
+                    details: [
+                        [cite_start]"Taught Software Engineering, DB, ERP, PMBOK-based system implementation. [cite: 46]",
+                        [cite_start]"Recognized with Award for Excellence in Teaching. [cite: 47]"
+                    ]
+                }
+            ],
+            achievements: [
+                [cite_start]{ label: 'Customer Satisfaction Increase', value: 80, description: "Unified customer view project at IXE Bank. [cite: 40]" },
+                [cite_start]{ label: 'Time-to-Market Reduction', value: 60, description: "Faster telecom service launches at B-Yond. [cite: 11]" },
+                [cite_start]{ label: 'Incident Backlog Reduction', value: 40, description: "Optimized escalation workflows at Laureate. [cite: 17]" },
+                [cite_start]{ label: 'Cost Reduction', value: 34, description: "ERP SOM rollout for Liverpool at IBM. [cite: 37]" },
+                [cite_start]{ label: 'Fraud Detection Improvement', value: 35, description: "Reduced response times at HSBC. [cite: 33]" },
+                [cite_start]{ label: 'Infrastructure Overhead Reduction', value: 30, description: "Cloud alignment at B-Yond. [cite: 13]" }
+            ],
+            skills: {
+                management: {
+                    title: "Program & Product Management",
+                    chartLabels: ["Program/Product Mgmt", "Governance", "PMO Design", "KPIs & Dashboards", "Financial Services", "Telecom"],
+                    chartData: [95, 98, 92, 97, 90, 88],
+                    list: [
+                        [cite_start]"SaaS, ERP, Telecom, & Banking Program Management [cite: 7]",
+                        [cite_start]"Governance & PMO Design [cite: 7]",
+                        [cite_start]"KPIs, Dashboards & Reporting (Power BI, Tableau, Looker) [cite: 7]",
+                        [cite_start]"Digital Transformation Strategy [cite: 5]",
+                        [cite_start]"Cost Reduction & Financial Controls [cite: 5]"
+                    ]
+                },
+                agile: {
+                    title: "Agile Practices",
+                    chartLabels: ["Scrum", "SAFe", "PI Planning", "Kanban", "Agile Leadership", "CI/CD"],
+                    chartData: [98, 95, 96, 90, 97, 92],
+                    list: [
+                        [cite_start]"Agile Practices (Scrum, SAFe, PI Planning, Kanban) [cite: 7]",
+                        [cite_start]"CI/CD, GitOps, DevOps automation [cite: 7]",
+                        [cite_start]"Certifications: SMC, SPOC, ALPC [cite: 7]",
+                        [cite_start]"In Progress: SAFe Program Consultant (SPC) [cite: 7]"
+                    ]
+                },
+                tech: {
+                    title: "Technology & Tools",
+                    chartLabels: ["Cloud Platforms", "API / Microservices", "Data Warehousing", "DevOps", "Basic Programming", "DB (SQL/JSON)"],
+                    chartData: [90, 92, 95, 88, 75, 85],
+                    list: [
+                        [cite_start]"Cloud Platforms: Azure, OCI, OpenShift, AWS (basic) [cite: 7]",
+                        [cite_start]"Integrations: API Integrations, Kafka, Microservices [cite: 7]",
+                        [cite_start]"Data: Data Warehousing, Power BI, Tableau, Looker [cite: 7]",
+                        [cite_start]"DevOps: CI/CD, GitOps [cite: 7]",
+                        [cite_start]"Programming: Basic JavaScript, Phyton, C++ [cite: 7]",
+                        [cite_start]"Databases: SQL and JSON based [cite: 7]"
+                    ]
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const timelineContainer = document.getElementById('timeline-container');
+            const statCardsContainer = document.getElementById('stat-cards-container');
+            
+            resumeData.experience.forEach((job) => {
+                const timelineItem = `
+                    <div class="timeline-item flex lg:items-center ${job.side === 'left' ? 'flex-row-reverse' : 'flex-row'}">
+                        <div class="hidden lg:block w-1/2"></div>
+                        <div class="hidden lg:block relative">
+                            <div class="absolute w-5 h-5 bg-blue-600 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                        </div>
+                        <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg cursor-pointer timeline-card">
+                            <p class="text-sm font-semibold text-blue-600 mb-1">${job.period}</p>
+                            <h3 class="text-xl font-bold text-gray-800">${job.company}</h3>
+                            <p class="text-md text-gray-600 mb-4">${job.role}</p>
+                            <div class="timeline-details hidden text-left text-gray-700 space-y-2">
+                                ${job.details.map(d => `<div><span class="text-blue-500 mr-2">&#10003;</span>${d}</div>`).join('')}
+                            </div>
+                            <div class="text-blue-500 mt-2 text-sm font-semibold timeline-toggle">Show Details &#9662;</div>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.innerHTML += timelineItem;
+            });
+
+            document.querySelectorAll('.timeline-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const details = card.querySelector('.timeline-details');
+                    const toggle = card.querySelector('.timeline-toggle');
+                    details.classList.toggle('hidden');
+                    if (details.classList.contains('hidden')) {
+                        toggle.innerHTML = 'Show Details &#9662;';
+                    } else {
+                        toggle.innerHTML = 'Hide Details &#9652;';
+                    }
+                });
+            });
+
+            resumeData.achievements.forEach(ach => {
+                const card = `
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <p class="text-4xl font-bold text-blue-600">${ach.value}%</p>
+                        <p class="text-gray-700 font-semibold mt-2">${ach.label}</p>
+                        <p class="text-sm text-gray-500 mt-1">${ach.description}</p>
+                    </div>
+                `;
+                statCardsContainer.innerHTML += card;
+            });
+
+            const achievementsCtx = document.getElementById('achievementsChart').getContext('2d');
+            new Chart(achievementsCtx, {
+                type: 'bar',
+                data: {
+                    labels: resumeData.achievements.map(a => a.label.split(' ')),
+                    datasets: [{
+                        label: 'Percentage Improvement',
+                        data: resumeData.achievements.map(a => a.value),
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+            let skillsChart;
+
+            function renderSkills(skillKey) {
+                const skillData = resumeData.skills[skillKey];
+                const skillsListContainer = document.getElementById('skills-list-container');
+                skillsListContainer.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">${skillData.title}</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            ${skillData.list.map(item => `<li><span class="text-blue-500 mr-2">&#10003;</span>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                if (skillsChart) {
+                    skillsChart.destroy();
+                }
+
+                skillsChart = new Chart(skillsChartCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: skillData.chartLabels,
+                        datasets: [{
+                            label: 'Proficiency',
+                            data: skillData.chartData,
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.skill-filter-btn').forEach(b => {
+                        b.classList.remove('bg-blue-600', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    e.target.classList.add('bg-blue-600', 'text-white');
+                    e.target.classList.remove('bg-gray-200', 'text-gray-700');
+                    renderSkills(e.target.dataset.skill);
+                });
+            });
+
+            renderSkills('management');
+            
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+
+    </script>
+</body>
+</html>
